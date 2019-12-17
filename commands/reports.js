@@ -18,8 +18,8 @@ module.exports.run = async (bot, message, args) => {
 // below shows how to get the report and print it out in another channel, supposedly the
 // reports channel, but for the sake of this example I'll put it within a channel
 //named jixbas-workshop.
-  let reportschannel = message.guild.channels.find(`name`, "jixbas-workshop");
-  if(!reportschannel) return message.channel.send("Couldn't find jixbas-workshop");
+  let reportschannel = message.guild.channels.find(`name`, "the-bois-lab");
+  if(!reportschannel) return message.channel.send("Couldn't find the-bois-lab");
 
   message.delete().catch(O_o=>{}); // deletes last message
   reportschannel.send(reportEmbed); //sends message to another channel
