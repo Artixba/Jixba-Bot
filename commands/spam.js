@@ -7,12 +7,15 @@ module.exports.run = async (bot, message, args) => {
       let timelen = args[1]
       let spamEmbed = new Discord.RichEmbed()//embed
       .addField(`${rUser}!`);
+    //   await let runSpam = () => {
 
-      for(i=0; i<timelen; i++){
-          (setTimeout(1000));
-          console.log(`Spamming ${rUser} ${timelen} time/s!`);
-          return message.send(spamEmbed).catch(O_o =>{});
-      }
+      
+    //   for(i=0; i<timelen; i++){
+    //       (setTimeout(1000));
+    //       console.log(`Spamming ${rUser} ${timelen} time/s!`);
+    //       return message.send(spamEmbed).catch(O_o =>{});
+    //   }
+    // };
       
     } catch (error) {
       console.log(error);
