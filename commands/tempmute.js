@@ -5,7 +5,7 @@ module.exports.run = async(bot,message,args) =>{
 
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!tomute) return message.reply("couldn't find user");
-  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can'tmute them");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can't mute them");
   let muterole = message.guild.roles.find(`name`, "Muted");
   if(!muterole){
     try{
@@ -30,7 +30,7 @@ module.exports.run = async(bot,message,args) =>{
   await(tomute.addRole(muterole.id));
   message.reply(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
   setTimeout(function(){
-    tomute.remobeRole(muterole.id);
+    tomute.removeRole(muterole.id);
     message.channel.send(`<@${tomute.id}. has been unmuted.`);
   }, ms(mutetime))
 ;}

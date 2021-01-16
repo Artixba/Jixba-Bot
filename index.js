@@ -1,6 +1,6 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
-const bot = new Discord.Client({ disableEveryone: true });
+const bot = new Discord.Client({ disableEveryone: false });
 const fs = require("fs"); //we need to read all files within command system
 
 // Get commands from the commands dir and add them as message handlers
@@ -15,7 +15,7 @@ fs.readdir("./commands/", (err, files) => {
     return;
   }
 
-  jsFiles.forEach((f, i) => {
+  jsFiles.forEach((f) => {
     let props = require(`./commands/${f}`);
     console.log(`${f} loaded!`);
     bot.commands.set(props.help.name, props);
@@ -28,7 +28,7 @@ bot.on("ready", async() => {
 });
 
 bot.on("message", async message => {
-  if (message.author.bot || message.channel.type === "dm") return;
+  if (message.author.bot || message.channel.type === "dm") return message.reply("I have a boyfriend. >:(");
 
   let prefix = botconfig.prefix;
   let messageArray = message.content.split(" "); //every time there's a space, it will save the word
@@ -40,8 +40,6 @@ bot.on("message", async message => {
   if (commandfile) commandfile.run(bot, message, args); // runs the file
 
   if (cmd === `${prefix}hello`) {
-    let messageembed = new Discord.RichEmbed()
-      //.addField("Hello, ", `<@${message.member.id}>`)
     return message.channel.send("Hello, " + `<@${message.author.id}>` + " UwU X3"); //!hello returns Hello! on discord
   }
 
@@ -67,6 +65,9 @@ bot.on("message", async message => {
       .addField("You joined", message.guild.member.joinedAt) // returns member  server join date
       .addField("Total Members", message.guild.memberCount); // returns number of people within server
     return message.channel.send(serverembed)
+  }
+  if (cmd === `${prefix}whydoyoutouchyourself?`) {
+    return message.channel.send("To please my lord, savior, master, and creator Jixba :3"); //!hello returns Hello! on discord
   }
 });
 

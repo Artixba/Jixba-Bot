@@ -1,8 +1,12 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-// if(cmd === `${prefix}report`){
+  try {
+    // if(cmd === `${prefix}report`){
+  // let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  // if(!rUser) return message.channel.send("couldn't find user.");
   let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  console.log(rUser);
   if(!rUser) return message.channel.send("couldn't find user.");
   let reason = args.join(" ").slice(22); // ID is 22 characters long
 
@@ -23,6 +27,10 @@ module.exports.run = async (bot, message, args) => {
 
   message.delete().catch(O_o=>{}); // deletes last message
   reportschannel.send(reportEmbed); //sends message to another channel
+  } catch (error) {
+    console.log(error);
+  }
+
 //return;
 //}
 }
