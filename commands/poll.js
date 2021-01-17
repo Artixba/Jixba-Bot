@@ -1,6 +1,3 @@
-const { Guild } = require("discord.js");
-const ms = require("ms");
-
 module.exports.run = async (bot, message, args) => {
     if(args[0] === "help") return message.reply("Let's other people know what you want to play.\n⚒ = Pummel Party\n🏴‍☠️ = Sea of Thieves\n⛏ = Deep Rock Galactic\n🃏 = Uno\n🪂 = Fall Guys\n📦 = JackBox Paty Pack");
     try {

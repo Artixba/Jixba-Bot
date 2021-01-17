@@ -14,18 +14,12 @@ module.exports.run = async (bot, message, args) => {
       
       for (let index = 0; index < timelen; index++) {
         await setTimeout(async() => {
-          await console.log("There is user and time");
           await message.channel.send(`${rUser} WYA!`);
         },index * 1500);
       }
-
-      
-
     } catch (error) {
       console.log(error);
     }
-
-
     }
     
     module.exports.help = {
