@@ -1,6 +1,6 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
-const bot = new Discord.Client({ disableEveryone: false });
+const bot = new Discord.Client({ disableMentions: 'everyone' });
 const fs = require("fs"); //we need to read all files within command system
 
 // Get commands from the commands dir and add them as message handlers
@@ -22,13 +22,13 @@ fs.readdir("./commands/", (err, files) => {
   });
 });
 
-bot.on("ready", async() => {
+bot.on("ready", async() => { // the "ready" part is the specified event in node js. In this case you're saying on the event that the bot is 'ready', do all of this
   console.log(`${bot.user.username} is online!`);
   bot.user.setActivity("with himself");
 });
 
-bot.on("message", async message => {
-  if (message.author.bot || message.channel.type === "dm") return message.reply("I have a boyfriend. >:(");
+try {
+  bot.on("message", async message => { // the 'message' part is the event. In the event that there's a 'message' do this.
 
   let prefix = botconfig.prefix;
   let messageArray = message.content.split(" "); //every time there's a space, it will save the word
@@ -38,14 +38,14 @@ bot.on("message", async message => {
   // the command being !say, and seperates it from the argument args
   let commandfile = bot.commands.get(cmd.slice(prefix.length)); //gets file we need
   if (commandfile) commandfile.run(bot, message, args); // runs the file
-
+  if (message.author.bot || message.channel.type === "dm") return;
   if (cmd === `${prefix}hello`) {
     return message.channel.send("Hello, " + `<@${message.author.id}>` + " UwU X3"); //!hello returns Hello! on discord
   }
 
   if (cmd === `${prefix}botinfo`) {
     let bicon = bot.user.displayAvatarURL; //gets your bot's image
-    let botembed = new Discord.RichEmbed()
+    let botembed = new Discord.MessageEmbed()
       .setDescription("Bot Information") //Shows information as to what the bot does
       .setThumbnail(bicon) // displays your bot's icon/thumbnail
       .setColor("#15f153") //Adds color to info field
@@ -56,7 +56,7 @@ bot.on("message", async message => {
 
   if (cmd === `${prefix}serverinfo`) {
     let sicon = message.guild.iconURL; // gets server icon
-    let serverembed = new Discord.RichEmbed()
+    let serverembed = new Discord.MessageEmbed()
       .setDescription("Server Information")
       .setColor("#15f153")
       .setThumbnail(sicon)
@@ -67,8 +67,16 @@ bot.on("message", async message => {
     return message.channel.send(serverembed)
   }
   if (cmd === `${prefix}whydoyoutouchyourself?`) {
-    return message.channel.send("To please my lord, savior, master, and creator Jixba :3"); //!hello returns Hello! on discord
+    try {
+      message.channel.send("To please my lord, savior, master, and creator Jixba :3"); //!hello returns Hello! on discord
+      await message.react('🍆');
+      await message.react('💦');
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
-
+} catch (error) {
+  console.log(error);
+}
 bot.login(botconfig.token);

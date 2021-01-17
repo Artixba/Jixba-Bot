@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   if(!rUser) return message.channel.send("couldn't find user.");
   let reason = args.join(" ").slice(22); // ID is 22 characters long
 
-  let reportEmbed = new Discord.RichEmbed()//embed
+  let reportEmbed = new Discord.MessageEmbed()//embed
   .setDescription("Reports")
   .setColor("#15f153")
   .addField("Reported User", `${rUser} with ID: ${rUser.id}`)
