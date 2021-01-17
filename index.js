@@ -68,9 +68,9 @@ try {
   }
   if (cmd === `${prefix}whydoyoutouchyourself?`) {
     try {
-      message.channel.send("To please my lord, savior, master, and creator Jixba :3"); //!hello returns Hello! on discord
-      await message.react('🍆');
-      await message.react('💦');
+      const msg = await message.channel.send("To please my lord, savior, master, and creator Jixba :3"); //!hello returns Hello! on discord
+      await msg.react('🍆');
+      await msg.react('💦');
     } catch (error) {
       console.log(error);
     }

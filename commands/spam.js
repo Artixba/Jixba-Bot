@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
       
       let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
       let timelen = args[1];
-      if( message.content === '!spam help') return message.channel.send('Sends a message to a specified user a declared number of times every 1.5 seconds.');
+      if( args[0] === 'help') return message.channel.send('Sends a message to a specified user a declared number of times every 1.5 seconds.');
       else if(!rUser) return message.channel.send("Couldn't find user to spam!");
       else if(!timelen) return message.channel.send("Time not set!");
       
