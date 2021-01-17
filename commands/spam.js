@@ -1,20 +1,26 @@
 module.exports.run = async (bot, message, args) => {
     try {
       console.log(`${message.content} ran.`);
-      let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-      if(!rUser) return message.channel.send("Couldn't find user to spam!");
+      
+      let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
       let timelen = args[1];
-      if(!timelen) return message.channel.send("Time not set!");
+      if( message.content === '!spam help') return message.channel.send('Sends a message to a specified user a declared number of times every 1.5 seconds.');
+      else if(!rUser) return message.channel.send("Couldn't find user to spam!");
+      else if(!timelen) return message.channel.send("Time not set!");
+      
+      
 
       console.log(`rUser = ${rUser} and timelen = ${timelen}`);
       
-      if(rUser) async timelen => {
-        console.log("There is user and time");
-        for (let index = 0; index < timelen; index++) {
-          await message.channel.send(`${rUser} WYA!`)
-          await setTimeout(1000);
-        }
-      };
+      for (let index = 0; index < timelen; index++) {
+        await setTimeout(async() => {
+          await console.log("There is user and time");
+          await message.channel.send(`${rUser} WYA!`);
+        },index * 1500);
+      }
+
+      
+
     } catch (error) {
       console.log(error);
     }

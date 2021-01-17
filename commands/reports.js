@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
     // if(cmd === `${prefix}report`){
   // let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   // if(!rUser) return message.channel.send("couldn't find user.");
-  let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
   console.log(rUser);
   if(!rUser) return message.channel.send("couldn't find user.");
   let reason = args.join(" ").slice(22); // ID is 22 characters long

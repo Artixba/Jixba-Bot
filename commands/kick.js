@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args ) => {
 
-  let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  let kUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
   if(!kUser) return message.channel.send("Can't find user");
   let kReason = args.join(" ").slice(22); // removes name of user so that it only prints out the reason for kick
   if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No way!"); // checks to see if it's possible for user using command to kick user
