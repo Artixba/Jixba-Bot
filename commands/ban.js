@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("No way!"); // checks to see if it's possible for user using command to kick user
   if(bUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked")
 
-  let banEmbed = new Discord.RichEmbed()
+  let banEmbed = new Discord.MessageEmbed()
   .setDescription("~Ban~")
   .setColor("#ff0000")
   .addField("Banned User", `${bUser} with ID ${bUser.id}`)
