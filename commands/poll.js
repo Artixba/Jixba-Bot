@@ -1,5 +1,7 @@
+const ms = require("ms");
+
 module.exports.run = async (bot, message, args) => {
-    if(args[0] === "help") return message.reply("Let's other people know what you want to play.\n⚒ = Pummel Party\n🏴‍☠️ = Sea of Thieves\n⛏ = Deep Rock Galactic\n🃏 = Uno\n🪂 = Fall Guys\n📦 = JackBox Paty Pack");
+    if(args[0] === "help") return message.send("Let's other people know what you want to play.\n⚒ = Pummel Party\n🏴‍☠️ = Sea of Thieves\n⛏ = Deep Rock Galactic\n🃏 = Uno\n🪂 = Fall Guys\n📦 = JackBox Paty Pack\n💀 = Dead by Daylight");
     try {
         const msg = await message.channel.send("Select what you want to play.");
         await msg.react("⚒");
@@ -8,28 +10,31 @@ module.exports.run = async (bot, message, args) => {
         await msg.react("🃏");
         await msg.react("🪂");
         await msg.react("📦");
+        await msg.react("💀");
 
         let pollchannel = console.log(message.guild.available);
         // if(!pollchannel) return message.channel.send("Couldn't find the-bois-lab");
 
         const filter = (reaction, user) => {
             console.log("I'm in filter");
-            return user.id === message.author.id && (reaction.emoji.name === "⚒" || reaction.emoji.name === "🏴‍☠️" || reaction.emoji.name === "⛏" || reaction.emoji.name === "🃏" || reaction.emoji.name === "🪂" || reaction.emoji.name === "📦"); 
+            return user.id === message.author.id && (reaction.emoji.name === "⚒" || reaction.emoji.name === "🏴‍☠️" || reaction.emoji.name === "⛏" || reaction.emoji.name === "🃏" || reaction.emoji.name === "🪂" || reaction.emoji.name === "📦" || reaction.emoji.name === "💀"); 
         };
 
-        await msg.awaitReactions(filter, {max: 1, time : 10000, errors: ['time']})
+        await msg.awaitReactions(filter, {max: 8, time : 15000, errors: ['time']})
         .then(async collected => {
             console.log("I'm in the then().");
-            if(collected.first().emoji.name === "⚒") return message.channel.send(`${message.author} wants to play Pummel Party!`);
-            else if(collected.first().emoji.name === "🏴‍☠️") return message.channel.send(`${message.author} wants to play Sea of Thieves!`);
-            else if(collected.first().emoji.name === "⛏") return message.channel.send(`${message.author} wants to play Deep Rock Galactic`);
-            else if(collected.first().emoji.name === "🃏") return message.channel.send(`${message.author} wants to play Uno`);
-            else if(collected.first().emoji.name === "🪂") return message.channel.send(`${message.author} wants to play Fall Guys`);
-            else if(collected.first().emoji.name === "📦") return message.channel.send(`${message.author} wants to play The JackBox Party Pack`);
+            if(collected.emoji.name === "⚒") return message.channel.send(`${message.author} wants to play Pummel Party!`);
+            else if(collected.emoji.name === "🏴‍☠️") return message.channel.send(`${message.author} wants to play Sea of Thieves!`);
+            else if(collected.emoji.name === "⛏") return message.channel.send(`${message.author} wants to play Deep Rock Galactic!`);
+            else if(collected.emoji.name === "🃏") return message.channel.send(`${message.author} wants to play Uno!`);
+            else if(collected.emoji.name === "🪂") return message.channel.send(`${message.author} wants to play Fall Guys!`);
+            else if(collected.emoji.name === "📦") return message.channel.send(`${message.author} wants to play The JackBox Party Pack!`);
+            else if(collected.emoji.name === "💀") return message.channel.send(`${message.author} wants to play Dead by Daylight!`);
             else return message.channel.send("Wrong emoji.");
         })
         .catch(async collected => {
             console.log("I'm in the catch");
+            message.channel.send(collected.size+ "←");
             return message.reply("You didn't react appropriately within 10 seconds >:(");
         });
 

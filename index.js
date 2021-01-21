@@ -1,6 +1,6 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
-const bot = new Discord.Client({ disableMentions: 'everyone' });
+const bot = new Discord.Client();
 const fs = require("fs"); //we need to read all files within command system
 
 // Get commands from the commands dir and add them as message handlers
@@ -66,7 +66,7 @@ try {
       .addField("Total Members", message.guild.memberCount); // returns number of people within server
     return message.channel.send(serverembed)
   }
-  if (cmd === `${prefix}whydoyoutouchyourself?`) {
+  if (cmd === `${prefix}whydoyouplaywithyourself?`) {
     try {
       const msg = await message.channel.send("To please my lord, savior, master, and creator Jixba :3"); //!hello returns Hello! on discord
       await msg.react('🍆');
