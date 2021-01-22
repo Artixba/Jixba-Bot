@@ -1,11 +1,12 @@
-const Discrord = require("discord.js");
+const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
 
-  let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
+  let bUser = message.guild.member(message.mentions.users.first() || member.guild.members.cache.get(args[0]));
   if(!bUser) return message.channel.send("Can't find user");
   let bReason = args.join(" ").slice(22); // removes name of user so that it only prints out the reason for kick
   if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.channel.send("No way!"); // checks to see if it's possible for user using command to kick user
   if(bUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked")
+  if(!bReason) return message.channel.send("You must enter a reason for kick.");
 
   let banEmbed = new Discord.MessageEmbed()
   .setDescription("~Ban~")
@@ -17,10 +18,10 @@ module.exports.run = async (bot, message, args) => {
   .addField("Time", message.createdAt)
   .addField("Reason", bReason);
 
-  let banChannel = message.guild.channels.find(`name`, "jixbas-workshop");
-  if(!banChannel) return message.channel.send("Can't find jixbas-workshop");
+  // let banChannel = message.member.guild.channels.cache.find(`name`, "jixbas-workshop");
+  // if(!banChannel) return message.channel.send("Can't find jixbas-workshop");
   message.guild.member(bUser).ban(bReason)
-  banChannel.send(banEmbed);
+  message.channel.send(banEmbed);
 
 }
 

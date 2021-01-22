@@ -27,14 +27,13 @@ module.exports.run = async (bot, message, args) => {
         message.channel.send('Your number is too high. Spamming 10 times...')
       } 
       try {
-        console.log('try block');
         for (let index = 0; index < spamcount; index++) {
-          console.log('actual loop');
           await setTimeout(async() => {
             if(Message === '') return bot.users.cache.get(user.id).send('WYA!');
             if(Message) return bot.users.cache.get(user.id).send(Message);       
           },index * 1500);
         }
+        message.channel.send('Spam finished sending.');
       } catch (error) {
         message.channel.send('Spam amount not set.')
       }

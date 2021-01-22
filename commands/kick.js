@@ -6,8 +6,9 @@ module.exports.run = async (bot, message, args ) => {
   let kReason = args.join(" ").slice(22); // removes name of user so that it only prints out the reason for kick
   if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("No way!"); // checks to see if it's possible for user using command to kick user
   if(kUser.hasPermission("MANAGE_MESSAGES")) return message.channel.send("That person can't be kicked")
+  if(!kReason) return message.channel.send("You must enter a reason for kick.");
 
-  let kickEmbed = new Discord.RichEmbed()
+  let kickEmbed = new Discord.MessageEmbed()
   .setDescription("~Kick~")
   .setColor("#ff0000")
   .addField("Kicked User", `${kUser} with ID ${kUser.id}`)
@@ -17,10 +18,10 @@ module.exports.run = async (bot, message, args ) => {
   .addField("Time", message.createdAt)
   .addField("Reason", kReason);
 
-  let kickChannel = message.guild.channels.find(`name`, "jixbas-workshop");
-  if(!kickChannel) return message.channel.send("Can't find jixbas-workshop");
+  // let kickChannel = message.guild.roles.cache.find(guild => guild.name === 'the-bois-lab');
+  // if(!kickChannel) return message.channel.send("Can't find jixbas-workshop nor the bois-lab");
   message.guild.member(kUser).kick(kReason)
-  kickChannel.send(kickEmbed);
+  message.channel.send(kickEmbed);
 
 }
 
