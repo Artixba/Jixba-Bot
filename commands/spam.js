@@ -1,27 +1,13 @@
 const Discord = require("discord.js");
-
 module.exports.run = async (bot, message, args) => {
   try {
-    console.log(`${message.content} ran.`);
-    
+    console.log(`${message.content} ran by ${message.author}.`);
+    //Setting variables
     let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
     let spamcount = parseInt(args[1]); // '1' 1
     let spammessage = args.slice(2).join(' ');
-
-    //when you type !spam @user notnumber message
-    console.log(spamcount);
-    console.log(typeof spamcount); //number
-    console.log(typeof spamcount === typeof spammessage); //false
-    console.log(Number.isInteger(spamcount)); //true
-    console.log(typeof spamcount === typeof 1); //true
-    console.log(typeof spamcount !== typeof 1);//false
-    console.log(typeof 1); // number
-    console.log(typeof spamcount === typeof 1); //true
-    console.log(typeof spamcount === typeof 1);//true
-
+    //Spam function
     async function messageSpam(user, Message, stop){
-      console.log("I'm in loop");
-
       if(spamcount > 10){
         spamcount = 10;
         message.channel.send('Your number is too high. Spamming 10 times...')
@@ -37,9 +23,8 @@ module.exports.run = async (bot, message, args) => {
       } catch (error) {
         message.channel.send('Spam amount not set.')
       }
-
     }
-    
+    // Help Message
     const helpmessage = new Discord.MessageEmbed()
     .setColor('#02791a')
     .setTitle('!spam Help')
@@ -49,8 +34,7 @@ module.exports.run = async (bot, message, args) => {
     .addField('How to use', '!spam <username> <number of messages> <optional: custom message>')
     .setImage('https://i.imgur.com/tEMjI8W.jpeg')
     .setTimestamp();
-
-    
+    //Spam logic and conditions
     if(args[0] === 'stop') return true;
     if( args[0] === 'help') return message.channel.send(helpmessage);
     else if(args[0] === '@everyone' || args[0] === '@here') {
@@ -63,7 +47,7 @@ module.exports.run = async (bot, message, args) => {
     console.log(error);
   }
 }
-    
+//Node JS stuff 
 module.exports.help = {
   name: "spam"
 }

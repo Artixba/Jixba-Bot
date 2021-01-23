@@ -11,6 +11,8 @@ module.exports.run = async (bot, message, args) => {
           {name:'!spam', value: 'Spams mentioned user a set amount of times.', inline: true},
           {name:'!poll', value: 'Makes a personal poll to let people know what you want to play.', inline: true},
           {name:'!report', value: 'Reports a mentioned user with for a set reason.', inline : true},
+          {name:'!ban', value: 'Bans a person if you have permission to.', inline : true},
+          {name:'!kick', value: 'Kicks a person if you have permission to.', inline : true},
           {name:'!meme', value: 'Posts a random meme, courtesy of the bois.', inline : true},
           {name:'!hello', value: 'Bot says hello :)', inline : true},
           {name:'!botinfo', value: 'Gives general information on bot', inline : true},

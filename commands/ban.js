@@ -17,6 +17,18 @@ module.exports.run = async (bot, message, args) => {
   .addField("Banned in", message.channel)
   .addField("Time", message.createdAt)
   .addField("Reason", bReason);
+  //Help Message
+  const helpmessage = new Discord.MessageEmbed()
+    .setColor('#02791a')
+    .setTitle('!ban Help')
+    .setAuthor('Artixba')
+    .setDescription('Bans specified user for a user-specified reason.')
+    .setThumbnail('https://i.imgur.com/UThwfDM.jpeg')
+    .addField('How to use', '!ban <username> <reason for ban>')
+    .setImage('https://i.kym-cdn.com/photos/images/original/001/384/345/210.png')
+    .setTimestamp();
+    //Logic and or conditionals
+    if(bUser === 'help') return message.channel.send(helpmessage);
 
   // let banChannel = message.member.guild.channels.cache.find(`name`, "jixbas-workshop");
   // if(!banChannel) return message.channel.send("Can't find jixbas-workshop");

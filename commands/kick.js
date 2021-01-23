@@ -17,7 +17,18 @@ module.exports.run = async (bot, message, args ) => {
   .addField("Kicked in", message.channel)
   .addField("Time", message.createdAt)
   .addField("Reason", kReason);
-
+  //Help message
+  const helpmessage = new Discord.MessageEmbed()
+  .setColor('#02791a')
+  .setTitle('!kick Help')
+  .setAuthor('Artixba')
+  .setDescription('Kicks specified user for a user-specified reason.')
+  .setThumbnail('https://i.imgur.com/UThwfDM.jpeg')
+  .addField('How to use', '!kick <username> <reason for kick>')
+  .setImage('https://i.ytimg.com/vi/CUWcRzGEVew/hqdefault.jpg')
+  .setTimestamp();
+  //Logic and or conditionals
+  if(kUser === 'help') return message.channel.send(helpmessage);
   // let kickChannel = message.guild.roles.cache.find(guild => guild.name === 'the-bois-lab');
   // if(!kickChannel) return message.channel.send("Can't find jixbas-workshop nor the bois-lab");
   message.guild.member(kUser).kick(kReason)

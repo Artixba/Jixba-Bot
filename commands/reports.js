@@ -18,6 +18,19 @@ module.exports.run = async (bot, message, args) => {
   .addField("channel", message.channel)
   .addField("Time", message.createdAt)
   .addField("Reason", reason);
+  //Help Message
+  const helpmessage = new Discord.MessageEmbed()
+  .setColor('#02791a')
+  .setTitle('!report Help')
+  .setAuthor('Artixba')
+  .setDescription('reports specified user for a user-specified reason.')
+  .setThumbnail('https://i.imgur.com/UThwfDM.jpeg')
+  .addField('How to use', '!report <username> <reason for report>')
+  .setImage('https://i.kym-cdn.com/photos/images/facebook/001/236/373/534.png')
+  .setTimestamp();
+  //Logic and or conditionals
+  if(rUser === 'help') return message.channel.send(helpmessage);
+
   // message.channel.send(reportEmbed); //prints out report within the channel
 // below shows how to get the report and print it out in another channel, supposedly the
 // reports channel, but for the sake of this example I'll put it within a channel
