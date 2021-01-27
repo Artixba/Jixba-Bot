@@ -14,6 +14,7 @@ module.exports.run = async (bot, message, args) => {
           {name:'!ban', value: 'Bans a person if you have permission to.', inline : true},
           {name:'!kick', value: 'Kicks a person if you have permission to.', inline : true},
           {name:'!meme', value: 'Posts a random meme, courtesy of the bois.', inline : true},
+          {name:'!spongify', value: 'Transforms your message into spongebob meme text.', inline : true},
           {name:'!hello', value: 'Bot says hello :)', inline : true},
           {name:'!botinfo', value: 'Gives general information on bot', inline : true},
           {name:'!serverinfo', value: 'Gives general server information', inline : true}

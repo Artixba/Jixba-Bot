@@ -15,11 +15,11 @@ module.exports.run = async (bot, message, args) => {
       try {
         for (let index = 0; index < spamcount; index++) {
           await setTimeout(async() => {
-            if(Message === '') return bot.users.cache.get(user.id).send('WYA!');
-            if(Message) return bot.users.cache.get(user.id).send(Message);       
+            if(Message === '') bot.users.cache.get(user.id).send('WYA!');
+            if(Message) bot.users.cache.get(user.id).send(Message);
+            if (index == spamcount - 1) return message.channel.send('Spam finished sending.');
           },index * 1500);
         }
-        message.channel.send('Spam finished sending.');
       } catch (error) {
         message.channel.send('Spam amount not set.')
       }

@@ -11,14 +11,7 @@ function getRandomIntInclusive(min, max) {
 module.exports.run = async(bot, message, args) => {
   let messageArray = message.content.split(" "); //every time there's a space, it will save the word
   let pic = getRandomIntInclusive(0,6);
-  if(messageArray.length > 1){
-    pic = messageArray[1];
-  }
-  console.log(`running meme command for message: ${message}`);
 
-  // Create the attachment using Attachment
-  const attachment = new Discord.Attachment(`./commands/memefolder/${pic}.png`);
-  //Help Message
   const helpmessage = new Discord.MessageEmbed()
   .setColor('#02791a')
   .setTitle('!meme Help')
@@ -30,6 +23,15 @@ module.exports.run = async(bot, message, args) => {
   .setTimestamp();
   //Logic and or conditionals
   if(args[0] === 'help') return message.channel.send(helpmessage);
+  if(messageArray.length > 1){
+    pic = messageArray[1];
+  }
+  console.log(`running meme command for message: ${message}`);
+
+  // Create the attachment using Attachment
+  const attachment = new Discord.MessageAttachment(`./commands/memefolder/${pic}.png`);
+  //Help Message
+ 
   // Send the attachment in the message channel with a content
   return message.channel.send(`${message.author},`, attachment)
     .catch(error => {
