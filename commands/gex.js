@@ -31,7 +31,9 @@ try {
         "This is like playing golf at Joel Miller’s house!"
         ];     
         function line(){
-            return Math.random() < .3 ? note[Math.round(note.length*Math.random())] : like[Math.round(like.length*Math.random())];
+            let randlike = Math.round(like.length*Math.random());
+            let randnote = Math.round(note.length*Math.random());
+            return Math.random() < .3 ? note[randnote] : like[randlike];
         }
         message.delete().catch(error =>{console.log(error);});
         return message.channel.send(line()); 
