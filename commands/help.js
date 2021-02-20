@@ -16,8 +16,9 @@ module.exports.run = async (bot, message, args) => {
           {name:'!meme', value: 'Posts a random meme, courtesy of the bois.', inline : true},
           {name:'!spongify', value: 'Transforms your message into spongebob meme text.', inline : true},
           {name:'!hello', value: 'Bot says hello :)', inline : true},
-          {name:'!botinfo', value: 'Gives general information on bot', inline : true},
-          {name:'!serverinfo', value: 'Gives general server information', inline : true}
+          {name:'!botinfo', value: 'Gives general information on bot.', inline : true},
+          {name:'!serverinfo', value: 'Gives general server information.', inline : true},
+          {name:'!gex', value: 'Say a funny one-liner.', inline : true}
       )
       .setImage('https://brianmunoz.co/imaqtpie/images/qt-twitch.jpg')
       .setTimestamp();
